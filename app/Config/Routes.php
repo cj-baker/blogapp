@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get("setup", "Setup::index");
 //$routes->get('/articles','Articles::index');
 //$routes->get("articles/(:num)",  "Articles::show/$1");
 //$routes->get("articles/new", "Articles::new", ["as" => "new_article"]);
