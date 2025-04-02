@@ -1,7 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !^/blogapp/public/
-RewriteRule ^(.*)$ /blogapp/public/$1 [L]
+RewriteRule .* blogapp/public/ [L]
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index.php$ - [L]
