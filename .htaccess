@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public
+RewriteCond %{REQUEST_URI} !^blogapp/public
 RewriteRule ^(.*)$ blogapp/public/$1 [L]
 RewriteEngine On
 RewriteBase /
