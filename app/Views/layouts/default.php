@@ -8,5 +8,5 @@
 <body>
 <?= $this->renderSection("content") ?>
 </body>
-<footer><?= $this->renderSection("footer") ?></footer>
+<footer></footer>
 </html>
