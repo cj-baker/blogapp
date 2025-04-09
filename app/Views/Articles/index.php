@@ -7,7 +7,7 @@
 
     <?php foreach ($articles as $article): ?>
         <article>
-            <h2><?= $article["title"] ?></h2>
+            <h2><a href="<?= site_url("/articles/" . $aticle["id"]) ?>"><?= $article["title"] ?></a></h2>
             <p><?= $article["content"] ?></p>
         </article>
 
