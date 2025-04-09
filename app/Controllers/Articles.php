@@ -24,6 +24,8 @@ class Articles extends BaseController
 
        $article = $model->find($id);
 
-    return view("Articles/show", ["article" => $article]);
+        return view("Articles/show", [
+            "article" => $article
+        ]);
     }
 }
