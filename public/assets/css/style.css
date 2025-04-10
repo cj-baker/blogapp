@@ -3,7 +3,10 @@
 
 }
 
-
+.button-link {
+    text-decoration: none;
+    color: white !important;
+}
 form{
     width: 90vw;
     margin: 0 auto;
@@ -14,4 +17,5 @@ textarea{
 }
 h1{
     font-family: var(--primary-font);
+    color: red;
 }

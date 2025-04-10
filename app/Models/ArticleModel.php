@@ -10,6 +10,7 @@ class ArticleModel extends Model
 
  protected $allowedFields =["title", "content"];
 
+ protected $returnType = \App\Entities\Article::class; //allows the model to use the entity class created for articles
 
  protected $validationRules =[  //putting validation rules within the Model avoids repeating validation rules within Controllers
     "title" => "required|max_length[128]",
