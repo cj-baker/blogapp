@@ -33,6 +33,23 @@ class Articles extends BaseController
     {
         return view("Articles/new");
     }
+
+    public function create()
+    {
+
+        $model = new ArticleModel;
+
+        $id = $model->insert( $this->request->getPost()); //using the insert method to insert whatever we pull from the getPost request.
+
+        if($id === false) {
+            return redirect()->back() //redirects back to the original page
+                             ->with("errors", $model->errors()) //displays errors based on the validation criteria in the ArticleModel
+                             ->withInput(); //retains the input data in the form
+        }
+        return redirect()->to("articles/$id") //provides a redirect to a different page
+                         ->with("message", "Blog entry created successfully."); //outputs a message after redirect
+       
+    }
         
     
 }

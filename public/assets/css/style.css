@@ -1,3 +1,17 @@
+:root {
+    --primary-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+
+form{
+    width: 90vw;
+    margin: 0 auto;
+}
+
+textarea{
+    height: 30vh;
+}
 h1{
-    color: red !important;
+    font-family: var(--primary-font);
 }
