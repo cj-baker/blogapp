@@ -9,5 +9,5 @@
 <p><?= esc($article->content) ?></p>
 
 <a href="<?= url_to("Articles::edit", $article->id) ?>" class="button-link"><button class="btn btn-primary">Edit</button></a>
-
+<a href="<?= url_to("Articles::delete", $article->id) ?>" class="button-link"><button class="btn btn-danger">Delete</button></a>
 <?= $this->endSection() ?>
