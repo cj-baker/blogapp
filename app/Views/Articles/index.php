@@ -5,7 +5,7 @@
 
     <h1>Articles</h1>
 
-    <a href="<?=url_to("Articles::new") ?>">Create a New Article</a>
+    <a href="<?=url_to("Articles::new") ?>">New Blog</a>
 
     <?php foreach ($articles as $article): ?>
         <article>

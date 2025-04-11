@@ -76,13 +76,26 @@ class Articles extends BaseController
     public function update($id)
     {
         
+        $article = $this->getArticleOr404($id);
 
-        if ($this->model->update($id, $this->request->getPost())) //using the update method to insert whatever we pull from the getPost request.
-        {
+        $article->fill($this->request->getPost()); // use the Entity fill method during the getPost request to update the properties
+
+        $article->__unset("_method");
+        
+        if ( ! $article->hasChanged()) {
+
+            return redirect()->back()
+                             ->with("message", "No changes have been made.");
+        }
+
+        if ($this->model->save($article)){ //save method will update the article that we have already selected which does nto require us to pass in the id object, just the article object
+
             return redirect()->to("articles/$id") //provides a redirect to a different page
                              ->with("message", "Blog entry updated successfully."); //outputs a message after redirect
 
         }
+
+        
          
          return redirect()->back() //redirects back to the original page
                           ->with("errors", $this->model->errors()) //displays errors based on the validation criteria in the ArticleModel
@@ -91,22 +104,26 @@ class Articles extends BaseController
        
     }
 
-    public function delete($id)
+    public function confirmDelete($id)
     {
         $article = $this->getArticleOr404($id);
-        if ($this->request->is("post")) {
 
+        return view("Articles/delete", [
+            "article" =>$article
+        ]);
+
+    }
+
+    public function delete($id)
+    {
+            $article = $this->getArticleOr404($id);
+        
             $this->model->delete($id);
 
             return redirect()->to("articles")
                              ->with("message", "Your blog entry was deleted.");
 
-        }
-
-
-        return view("Articles/delete", [ 
-            "article" => $article
-        ]);
+        
     }
 
     private function getArticleOr404($id): Article

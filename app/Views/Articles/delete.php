@@ -8,7 +8,9 @@
 
 <p>Are you sure you want to delete this blog?</p>
 
-<?= form_open("articles/delete/" . $article->id) ?>
+<?= form_open("articles/" . $article->id) ?>
+
+<input type="hidden" name="_method" value="DELETE">  <!--Value needs to be DELETE in all caps -->
 
 <button class="btn btn-danger">Yes</button> <a href=<?= base_url("articles/" . $article->id)?>>Cancel</a>
 

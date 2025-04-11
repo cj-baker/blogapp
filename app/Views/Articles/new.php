@@ -15,7 +15,7 @@
 
 <?php endif; ?>
 
-<?= form_open("articles/create") //form needs to be added to the "helper" portion of the BaseController for this to work ?>
+<?= form_open("articles") //form needs to be added to the "helper" portion of the BaseController for this to work ?>
 
 <?= $this->include("Articles/form") ?>
 
