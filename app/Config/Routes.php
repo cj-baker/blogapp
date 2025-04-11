@@ -7,9 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-
-
-service('auth')->routes($routes);
+service('auth')->routes($routes); //shield authorization routes
 $routes->resource("articles", ["placeholder" => "(:num)"]); // the resource route automatically generates all of the RESTful crud routes below
 //$routes->get("/articles", "Articles::index");
 //$routes->get("articles/(:num)", "Articles::show/$1");
