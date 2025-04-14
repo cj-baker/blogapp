@@ -17,3 +17,6 @@ $routes->resource("articles", ["placeholder" => "(:num)"]); // the resource rout
 //$routes->patch("articles/(:num)", "Articles::update/$1"); 
 //$routes->delete("articles/(:num)", "Articles::delete/$1");
 $routes->get("articles/(:num)/delete", "Articles::confirmDelete/$1");
+
+$routes->get("set-password", "Password::set");
+$routes->post("set-password", "Password::update");
