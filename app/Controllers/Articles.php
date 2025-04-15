@@ -24,11 +24,14 @@ class Articles extends BaseController
                      //selecting all columns from the article table, but only the username from the users table
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
-                     ->findAll(); 
-                     //grabs all articles
+                     ->orderBy("created_at")
+                     //order the below paginate list by created date
+                     ->paginate(3); 
+                     //grabs all articles and puts them into pages with the number passed being the amount of records per page
         
         return view ("Articles/index", [ //inputs the article data into the index view to be displayed
-            "articles" => $data
+            "articles" => $data,
+            "pager" => $this->model->pager
         ]);
     }
 
