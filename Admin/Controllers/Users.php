@@ -52,6 +52,25 @@ class Users extends BaseController
                          ->with("message", "User ban status updated");
     }
 
+    public function groups($id)
+    {
+        $user = $this->getUserOr404($id);
+
+        if ($this->request->is("post")) {
+
+            $groups = $this->request->getPost("groups") ?? []; //?? [] will set the value to the empty array if the update is equal to null (if there are no groups selected)
+
+            $user->syncGroups(...$groups); //syncs all changes, which adds or removes groups as necessary to the changes made.
+
+            return redirect()->to("admin/users/$id")
+                             ->with("message", "User groups have been updated.");
+        }
+
+        return view ("Admin\Views\Users\groups", [
+            "user" => $user
+        ]);
+    }
+
 
     private function getUserOr404($id): User
         {

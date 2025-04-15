@@ -28,7 +28,7 @@ class Login implements FilterInterface
         if ( ! auth()->loggedIn()) {
 
             return redirect()->to("login")
-                             ->with("message", "You must login to the Admin Portal to perform that action.");
+                             ->with("message", "You must login to the Blogger Portal to perform that action.");
                             //must add an ALIAS in the filters config file so that we can call this function easily.
                             //then you can call the "login" alias as a filter on whichever routes you would like on the Routes config file.
 

@@ -9,10 +9,36 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/style.css'); ?>">
 </head>
 <body>
+<nav class="d-flex flex-row gap-2">
+<li><a href="/">Home</a></li>
+<?php if (auth()->loggedIn()): ?>
+    
+        Hello <?= esc(auth()->user()->username) ?>!
+        <ul class="d-flex flex-row-end gap-5 text-end">
+            <li><a href="/articles">Blogs</a></li>
+            <?php if(auth()->user()->inGroup("admin")): ?>
+            <li><a href="/admin/users">User Managment</a></li>
+            <?php endif; ?>
+            <li><a href="<?= url_to("logout") ?>" class="text-end">Log out</a></li>
+        </ul>
+    
+    
+<?php else: ?>
+    
+        <a href="<?= url_to("login") ?>">Admin Portal</a>
+   
+    
+<?php endif; ?>
+</nav>
 
 <?php if (session()->has("message")): ?>
     <p><?= session("message") ?></p>
 <?php endif; ?>
+
+<?php if (session()->has("error")): ?>
+    <p><?= session("error") ?></p>
+<?php endif; ?>
+
 
 <?= $this->renderSection("content") ?>
 
