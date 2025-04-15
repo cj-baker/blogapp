@@ -1,3 +1,4 @@
-const quill = new Quill('#editor', {
-    theme: 'snow'
-  });
+let table = new DataTable('#myTable', {
+  paging: true,
+  
+});
