@@ -19,7 +19,13 @@ class Articles extends BaseController
 
         
         
-        $data = $this->model->findAll(); //grabs all articles
+        $data = $this->model
+                     ->select("article.*, users.username")
+                     //selecting all columns from the article table, but only the username from the users table
+                     ->join("users", "users.id = article.users_id")
+                     //then join to the users table, the id from the users table and the users_id from the article table
+                     ->findAll(); 
+                     //grabs all articles
         
         return view ("Articles/index", [ //inputs the article data into the index view to be displayed
             "articles" => $data
@@ -45,9 +51,6 @@ class Articles extends BaseController
 
     public function create()
     {
-
-        
-
         $article = new Article($this->request->getPost()); //will process the post request through the Article entity, which will set all properties of the object that are set within the ArticleModel (ie allowedFields)
 
         $id = $this->model->insert($article); //using the insert method to insert whatever we pull from the getPost request.

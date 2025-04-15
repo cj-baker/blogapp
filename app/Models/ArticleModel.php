@@ -26,4 +26,13 @@ class ArticleModel extends Model
         "required" => "Please provide content for the blog."
     ]
     ];
+
+    protected $beforeInsert = ["setUsersID"];
+
+    protected function setUsersID(array $data)
+    {
+        $data["data"]["users_id"] = auth()->user()->id;
+
+        return $data;
+    }
 }
