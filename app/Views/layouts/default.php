@@ -16,7 +16,7 @@
         Hello <?= esc(auth()->user()->username) ?>!
         <ul class="d-flex flex-row-end gap-5 text-end">
             <li><a href="/articles">Blogs</a></li>
-            <?php if(auth()->user()->inGroup("admin")): ?>
+            <?php if(auth()->user()->inGroup("superadmin")): ?>
             <li><a href="/admin/users">User Managment</a></li>
             <?php endif; ?>
             <li><a href="<?= url_to("logout") ?>" class="text-end">Log out</a></li>

@@ -71,6 +71,25 @@ class Users extends BaseController
         ]);
     }
 
+    public function permissions($id)
+    {
+        $user = $this->getUserOr404($id);
+
+        if ($this->request->is("post")) {
+
+            $permissions = $this->request->getPost("permissions") ?? []; //?? [] will set the value to the empty array if the update is equal to null (if there are no permissions selected)
+
+            $user->syncPermissions(...$permissions); //syncs all changes, which adds or removes permissions as necessary to the changes made.
+
+            return redirect()->to("admin/users/$id")
+                             ->with("message", "User permissions have been updated.");
+        }
+
+        return view ("Admin\Views\Users\permissions", [
+            "user" => $user
+        ]);
+    }
+
 
     private function getUserOr404($id): User
         {

@@ -41,13 +41,17 @@ class AuthGroups extends ShieldAuthGroups
      * @see https://codeigniter4.github.io/shield/quick_start_guide/using_authorization/#change-available-groups for more info
      */
     public array $groups = [
+        'superadmin' => [
+            'title'      => 'Super Admin',
+            'description' => 'Complete control of the site.',
+        ],
         'admin' => [
             'title'       => 'Admin',
-            'description' => 'Complete control of the site.',
+            'description' => 'Complete control of the blogging activities, and blog maintenence.',
         ],
         'user' => [
             'title'       => 'User',
-            'description' => 'Complete control of blogging activities.',
+            'description' => 'Control of their own blogging activities only.',
         ]
     ];
 
@@ -60,13 +64,8 @@ class AuthGroups extends ShieldAuthGroups
      * If a permission is not listed here it cannot be used.
      */
     public array $permissions = [
-        'admin.access'        => 'Can access the sites admin area',
-        'admin.settings'      => 'Can access the main site settings',
-        'users.manage-admins' => 'Can manage other admins',
-        'users.create'        => 'Can create new non-admin users',
-        'users.edit'          => 'Can edit existing non-admin users',
-        'users.delete'        => 'Can delete existing non-admin users',
-        'beta.access'         => 'Can access beta-level features',
+        "articles.edit" => "Can edit any article",
+        "articles.delete" => "Can delete any article"
     ];
 
     /**
@@ -79,27 +78,12 @@ class AuthGroups extends ShieldAuthGroups
      */
     public array $matrix = [
         'superadmin' => [
-            'admin.*',
-            'users.*',
-            'beta.*',
+            'articles.*'
         ],
         'admin' => [
-            'admin.access',
-            'users.create',
-            'users.edit',
-            'users.delete',
-            'beta.access',
-        ],
-        'developer' => [
-            'admin.access',
-            'admin.settings',
-            'users.create',
-            'users.edit',
-            'beta.access',
+            "articles.*"
         ],
         'user' => [],
-        'beta' => [
-            'beta.access',
-        ],
+        
     ];
 }
