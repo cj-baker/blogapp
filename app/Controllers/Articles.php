@@ -16,9 +16,6 @@ class Articles extends BaseController
     }
     public function index() //provides the list of articles based on the ArticleModel which handles the Articles table data.
     {
-
-        
-        
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
