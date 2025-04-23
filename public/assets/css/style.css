@@ -3,12 +3,11 @@
     --primary-color: #ff9eca
 }
 .nav-header{
-    height: 30vh;
+    height: 310px;
 }
 .nav-image {
     width: auto;
     max-height: 300px;
-    margin: auto;
 }
 .nav-link:hover, .dropdown-item:hover{
 font-weight: 600 !important;
