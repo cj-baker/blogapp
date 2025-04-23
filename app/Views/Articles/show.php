@@ -4,9 +4,9 @@
 
 <?= $this->section("content") ?>  
 
-<h1><?= esc($article->title) ?></h1>
+<h1><?= $article->title ?></h1>
 
-<p><?= esc($article->content) ?></p>
+<p><?= $article->content ?></p>
 
 <?php if(auth()->loggedIn() && ($article->isOwner() || auth()->user()->can("articles.edit"))): //isOwner method was created in Articles Entities page ?>
 <a href="<?= url_to("Articles::edit", $article->id) ?>" class="button-link"><button class="btn btn-primary">Edit</button></a>

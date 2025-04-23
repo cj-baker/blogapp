@@ -1,6 +1,31 @@
 :root {
     --primary-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+    --primary-color: #ff9eca
+}
+.nav-header{
+    height: 30vh;
+}
+.nav-image {
+    width: auto;
+    height: 100%;
+    margin: auto;
+}
+.nav-link:hover, .dropdown-item:hover{
+font-weight: 600 !important;
+transition: 100ms ease-in-out;
+}
+.active{
+    text-decoration: underline;
+}
+article a {
+text-decoration: none;
+color: var(--primary-color);
+}
+h1 {
+  padding: 5vh 0;  
+}
+article{
+    margin: 0 auto;
 }
 
 .button-link {
@@ -10,12 +35,15 @@
 form{
     width: 90vw;
     margin: 0 auto;
+    
 }
 
 textarea{
     height: 30vh;
+    
+    
 }
 h1{
     font-family: var(--primary-font);
-    color: red;
+    color: blue;
 }

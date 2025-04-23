@@ -14,9 +14,9 @@ class AddAdminAccount extends Seeder
     public function run()
     {
         $user = new User([ //create a user with the following information
-            "email" => "cj-baker@live.com",
+            "email" => "prestonmobley01@gmail.com",
             "password" => "ChangeMe99",
-            "username" => "SuperAdmin"
+            "username" => "DryerAverage"
         ]);
         $model = new UserModel;
 
@@ -26,6 +26,6 @@ class AddAdminAccount extends Seeder
 
         $user->activate(); //auto activate the account so they do not have to go through activation steps to login
 
-        $user->addGroup("admin", "superadmin"); //add the user to the groups Admin and Superadmin
+        $user->addGroup("admin"); //add the user to the groups Admin and Superadmin
     }
 }

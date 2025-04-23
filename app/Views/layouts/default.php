@@ -10,26 +10,43 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/style.css'); ?>">
 </head>
 <body>
-<nav class="d-flex flex-row gap-2">
-<li><a href="/">Home</a></li>
-<?php if (auth()->loggedIn()): ?>
-    
-        Hello <?= esc(auth()->user()->username) ?>!
-        <ul class="d-flex flex-row-end gap-5 text-end">
-            <li><a href="/articles">Blogs</a></li>
+<nav class="navbar navbar-expand-lg" style="background-color: #ff9eca;" data-bs-theme="light"">
+  <div class="container-fluid d-flex flex-column gap-5">
+    <div class="nav-header text-center mx-auto mb-5">
+        <a class="navbar-brand" href="#">The DryerAverage</a>
+        <p>Game Reviews and Reflections</p>
+        <img src="<?= base_url('assets/images/peach.png'); ?>" alt="princess peach" class="nav-image">
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link <?php if(current_url() === base_url("")):?> active <?php endif; ?>" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Blogs</a>
+        </li>
+        <?php if (auth()->loggedIn()): ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?= esc(auth()->user()->username) ?>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a href="<?= url_to("logout") ?>" class="dropdown-item">Logout</a></li>
             <?php if(auth()->user()->inGroup("superadmin")): ?>
-            <li><a href="/admin/users">User Managment</a></li>
+            <li><a class="dropdown-item <?php if(current_url() === base_url("/admin/users")):?> active <?php endif; ?>" href="/admin/users">Manage Bloggers</a></li>
             <?php endif; ?>
-            <li><a href="<?= url_to("logout") ?>" class="text-end">Log out</a></li>
-        </ul>
-    
-    
-<?php else: ?>
-    
-        <a href="<?= url_to("login") ?>">Admin Portal</a>
-   
-    
-<?php endif; ?>
+          </ul>
+        </li>
+        <?php endif; ?>
+    </ul>
+    </li>
+      
+    </div>
+  </div>
 </nav>
 
 <?php if (session()->has("message")): ?>
@@ -50,5 +67,16 @@
 
 
 </body>
-<footer></footer>
+<footer>
+<?php if (auth()->loggedIn()): ?>
+    <li class="nav-item">
+        <a href="<?= url_to("logout") ?>" class="nav-link">Logout</a>
+        </li>
+        <?php else: ?>
+           <li class="nav-item">
+           <a href="<?= url_to("login") ?>" class="nav-link">Admin Portal</a>
+           </li> 
+      </ul>
+      <?php endif; ?>
+</footer>
 </html>
