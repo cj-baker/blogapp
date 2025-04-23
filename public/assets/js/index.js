@@ -9,7 +9,6 @@ let table = new DataTable('#myTable', {
 tinymce.init({
   selector: '#mytextarea',
   plugins: 'advlist link image lists emoticons',
-  images_file_types: 'jpg,jpeg,png,gif',
   toolbar_mode: 'wrap',
   license_key: 'gpl'
 

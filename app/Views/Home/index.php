@@ -3,8 +3,18 @@
 
 <?= $this->section("content") ?>
 
-<h1>Home</h1>
+<h1>Recent Reviews</h1>
 
-<?= $this->include("Home/articles") ?>
+<div class="container row px-5">
+    <div class="col-6">
+        <?= $this->include("Home/articles") ?>
+    </div>
+    <div class="col-4">
+
+    </div>
+
+</div>
+
+
 
 <?= $this->endSection() ?>

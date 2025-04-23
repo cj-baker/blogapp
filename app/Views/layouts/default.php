@@ -68,15 +68,22 @@
 
 </body>
 <footer>
-<?php if (auth()->loggedIn()): ?>
-    <li class="nav-item">
+<div class="container-fluid d-flex flex-column">
+    <div class="text-center mx-auto mb-5">
+        <a class="" href="#">The DryerAverage</a>
+        <p>Game Reviews and Reflections</p>
+    </div>
+    <ul class="d-flex justify-content-center">
+        <?php if (auth()->loggedIn()): ?>
+        <li class="nav-item">
         <a href="<?= url_to("logout") ?>" class="nav-link">Logout</a>
         </li>
         <?php else: ?>
            <li class="nav-item">
            <a href="<?= url_to("login") ?>" class="nav-link">Admin Portal</a>
            </li> 
-      </ul>
-      <?php endif; ?>
+        <?php endif; ?>
+    </ul>
+      
 </footer>
 </html>
