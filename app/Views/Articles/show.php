@@ -3,7 +3,7 @@
 <?= $this->section("title") ?> Article <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>  
-
+<div class="blog-content">
 <h1><?= $article->title ?></h1>
 
 <p><?= $article->content ?></p>
@@ -15,5 +15,5 @@
 <?php if(auth()->loggedIn() && ($article->isOwner() || auth()->user()->can("articles.delete"))): ?>
 <a href="<?= url_to("Articles::confirmDelete", $article->id) ?>" class="button-link"><button class="btn btn-danger">Delete</button></a>
 <?php endif; ?>
-
+</div>
 <?= $this->endSection() ?>
