@@ -60,30 +60,36 @@
 
 <?= $this->renderSection("content") ?>
 
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-<script src="<?php echo base_url("assets/js/index.js"); ?>"></script>
-
-
-</body>
 <footer>
-<div class="container-fluid d-flex flex-column">
-    <div class="text-center mx-auto mb-5">
-        <a class="" href="#">The DryerAverage</a>
+<div class="container-fluid d-flex flex-row justify-content-evenly">
+    <div class="text-center align-items-center">
+        <a class="footer-link" href="/">The DryerAverage</a>
         <p>Game Reviews and Reflections</p>
     </div>
-    <ul class="d-flex justify-content-center">
+    <ul class="d-flex flex-column justify-content-center account-links">
+        <div class="link-header">Account</div>
         <?php if (auth()->loggedIn()): ?>
-        <li class="nav-item">
-        <a href="<?= url_to("logout") ?>" class="nav-link">Logout</a>
+        <li class="footer-item">
+        <a href="<?= url_to("logout") ?>" class="footer-link">Logout</a>
         </li>
         <?php else: ?>
-           <li class="nav-item">
-           <a href="<?= url_to("login") ?>" class="nav-link">Admin Portal</a>
+           <li class="footer-item">
+           <a href="<?= url_to("login") ?>" class="footer-link">Admin Portal</a>
            </li> 
         <?php endif; ?>
     </ul>
-      
+    <ul class="d-flex flex-column justify-content-center account-links">
+        <div class="link-header">Blogs</div>
+        <li class="footer-item">
+          <a class="footer-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Recent Reviews</a>
+        </li>
+    </ul>
+</div>    
 </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://kit.fontawesome.com/dbf5d821fc.js" crossorigin="anonymous"></script>
+    <script src="<?php echo base_url("assets/js/index.js"); ?>"></script>
+</body>
 </html>

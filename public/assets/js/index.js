@@ -8,8 +8,10 @@ let table = new DataTable('#myTable', {
 //adds rich text editor plugin to textarea
 tinymce.init({
   selector: '#mytextarea',
-  plugins: 'advlist link image lists emoticons',
+  plugins: 'advlist link image lists',
+  toolbar: 'undo redo styles fontfamily fontsizeinput forecolor backcolor | bold italic underline strikethrough | alignright aligncenter alignleft alignjustify | indent outdent bullist numlist | image',
   toolbar_mode: 'wrap',
+  image_caption: true,
   license_key: 'gpl'
 
 });

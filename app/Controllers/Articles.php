@@ -129,6 +129,15 @@ class Articles extends BaseController
         
     }
 
+    public function search($id) // provides one article based on the id of the article within the Articles table
+    {
+        
+       $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
+
+        return view("Articles/show", [ //inputs the data for the given article into the show view.
+            "article" => $article
+        ]);
+    }
     private function getArticleOr404($id): Article
     {
         $article = $this->model->find($id); //grabs one article by id OR spits out error if the id does not exist

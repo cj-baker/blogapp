@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\ArticleModel;
+use App\Entities\Article;
+
+
+class Search extends BaseController 
+{
+    private ArticleModel $model;
+
+    public function __construct()
+    {
+        $this->model = new ArticleModel;
+    }
+    public function search() {
+
+        $searchInput = $this->request->getPost(esc("search"));
+
+        $data = $this->model
+                     ->select("article.*, users.username")
+                     //selecting all columns from the article table, but only the username from the users table
+                     ->like("article.content", $searchInput, "both")
+
+                     ->orLike("article.title", $searchInput, "both")
+                     
+                     ->join("users", "users.id = article.users_id")
+                     //then join to the users table, the id from the users table and the users_id from the article table
+                     ->orderBy("created_at DESC")
+                     //order the below paginate list by created date
+                     ->paginate(3); 
+                     //grabs all articles and puts them into pages with the number passed being the amount of records per page
+        
+
+                     return view ("Articles/search", [ //inputs the article data into the index view to be displayed
+                        "articles" => $data,
+                        "pager" => $this->model->pager,
+                        "search" => $searchInput
+                    ]);
+
+    }
+
+}

@@ -1,17 +1,22 @@
 :root {
     --primary-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    --primary-color: #ff9eca
+    --primary-color: #ff9eca;
+    --secondary-color: #3CAEFE;
 }
 .nav-header{
     height: 310px;
+    color: white !important;
 }
 .nav-image {
     width: auto;
     max-height: 300px;
 }
-.nav-link:hover, .dropdown-item:hover{
-font-weight: 600 !important;
-transition: 100ms ease-in-out;
+.nav-link, .nav-header, .navbar-brand{
+    color: white !important; 
+}
+.nav-link:hover, .dropdown-item:hover, .navbar-brand:hover{
+color: var(--secondary-color) !important;
+transition: 200ms ease-in-out;
 }
 .active{
     text-decoration: underline;
@@ -44,4 +49,25 @@ h1{
     font-family: var(--primary-font);
     color: #3CAEFE;
     padding: 5vh 5vw; 
+}
+footer {
+    padding: 10vh 0vw;
+    margin: auto 0;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+}
+.footer-link, .footer-item{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+.footer-link:hover{
+    color: var(--secondary-color);
+    transition: 200ms ease-in-out;
+}
+.link-header{
+   font-weight: 600;
+   text-decoration: underline;
+    color: white;
 }
