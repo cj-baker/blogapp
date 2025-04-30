@@ -14,9 +14,9 @@ class AddAdminAccount extends Seeder
     public function run()
     {
         $user = new User([ //create a user with the following information
-            "email" => "prestonmobley01@gmail.com",
-            "password" => "ChangeMe99",
-            "username" => "DryerAverage"
+            "email" => "",
+            "password" => "",
+            "username" => ""
         ]);
         $model = new UserModel;
 

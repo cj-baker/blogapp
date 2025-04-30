@@ -8,6 +8,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    width:100%; 
+    overflow-x: hidden;
+}
 
 .nav-header{
     height: 310px;
@@ -26,7 +30,8 @@ transition: 200ms ease-in-out;
     text-decoration: underline;
 }
 .content{
-margin-bottom: 60px;
+padding-bottom: 60px;
+padding: 0px 30px;
 }
 article a {
 text-decoration: none;
@@ -38,26 +43,31 @@ article{
     
 }
 .sidebar{
+    text-align: center;
     border-left: 2px solid var(--primary-color);
     border-right: 2px solid var(--primary-color);
 }
-.search-form{
-    padding: 40px 10px;
-}
+
 
 .button-link {
     text-decoration: none;
     color: white !important;
 }
-form{
-    width: 90vw;
+form.article-form{
+    width: 90%;
     margin: 0 auto;   
 }
-
+.search-form, .archive-form {
+    padding: 40px 10px;
+    text-align: end;
+    width: 75%;
+    
+}
 .blog-content{
     margin: 0 auto;
     text-align: center;
     display: block;
+    
 }
 
 textarea{

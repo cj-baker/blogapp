@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
-use App\Entities\Article;
+use CodeIgniter\I18n\Time;
 
 class Home extends BaseController
 {
@@ -39,6 +39,7 @@ class Home extends BaseController
             "pager" => $this->model->pager
         ]);
     }
+
 
     private function sendTestEmail()
     {

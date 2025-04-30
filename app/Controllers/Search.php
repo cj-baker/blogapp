@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
+use CodeIgniter\I18n\Time;
 use App\Entities\Article;
 
 
@@ -40,5 +41,31 @@ class Search extends BaseController
                     ]);
 
     }
+    public function archive()
+    {
+        
+        $filterMonth = $this->request->getPost("archive");
+        
+       
+        
+        
+        $data = $this->model
+                     ->select("article.*, users.username")
+                     //selecting all columns from the article table, but only the username from the users table
+                    
+                     ->join("users", "users.id = article.users_id")
+                     //then join to the users table, the id from the users table and the users_id from the article table
+                     ->orderBy("created_at DESC")
+                     //order the below paginate list by created date
+                     ->paginate(3); 
+                     //grabs all articles and puts them into pages with the number passed being the amount of records per page
+
+                     return view ("Articles/archive", [ //inputs the article data into the index view to be displayed
+                        "articles" => $data,
+                        "pager" => $this->model->pager,
+                        "archive" => $filterMonth
+                    ]);
+    }
+    
 
 }
