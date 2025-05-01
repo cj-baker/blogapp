@@ -16,7 +16,7 @@
 
 <?php endforeach; ?>
 <?php else : ?>
-<p>No Blogs Found</p>
+<p class="not-found">No Blogs Found</p>
 <?php endif; ?>
 
 <?= $this->endSection() ?>
