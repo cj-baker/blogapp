@@ -23,7 +23,11 @@ $routes->group("", ["filter" => "group: admin, user"], static function ($routes)
     $routes->patch("articles/(:num)", "Articles::update/$1"); 
     $routes->delete("articles/(:num)", "Articles::delete/$1");
     $routes->get("articles/(:num)/delete", "Articles::confirmDelete/$1");
-   
+
+    $routes->get("categories", "Categories::index");
+    $routes->post("categories", "Categories::addCategory");
+    $routes->delete("categories/(:num)", "Categories::delete/$1");
+    
     $routes->get("set-password", "Password::set");
     $routes->post("set-password", "Password::update");
 });

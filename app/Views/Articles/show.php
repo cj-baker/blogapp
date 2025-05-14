@@ -1,6 +1,6 @@
 <?= $this->extend("layouts/default") ?>
 
-<?= $this->section("title") ?> Article <?= $this->endSection() ?>
+<?= $this->section("title") ?> Article - <?= $article->title ?><?= $this->endSection() ?>
 
 <?= $this->section("content") ?>  
 <div class="blog-content">

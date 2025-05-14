@@ -14,6 +14,8 @@
 
 <button class="btn btn-danger">Yes</button> <a href=<?= base_url("articles/" . $article->id)?>>Cancel</a>
 
+</form>
+
 
 
 

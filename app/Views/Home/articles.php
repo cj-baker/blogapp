@@ -6,8 +6,8 @@
             <em>Published by <?=esc($article->username) ?> <?= $article->created_at->humanize() ?></em>
             <p><a href="<?= site_url("/articles/" . $article->id) ?>"><?= word_limiter($article->content, 400) ?></a></p>
         </article>
+        <button class="btn btn-primary read-button mt-3 text-right mx-auto"><a href="<?= site_url("/articles/" . $article->id) ?>" class="button-link">Read More</a></button>
         <hr class="article-end">
-        <button class="btn btn-primary read-button mb-5"><a href="<?= site_url("/articles/" . $article->id) ?>" class="button-link">Read More</a></button>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
 </div>

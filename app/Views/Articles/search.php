@@ -18,5 +18,5 @@
 <?php else : ?>
 <p class="not-found">No Blogs Found</p>
 <?php endif; ?>
-
+<?= $this->include("layouts/sidebar") ?>
 <?= $this->endSection() ?>

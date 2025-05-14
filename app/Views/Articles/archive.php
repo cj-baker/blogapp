@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>  
 
 
-<h1>Results By 
+<h1>Results for 
     
 <?php 
 use CodeIgniter\I18n\Time;
@@ -30,5 +30,5 @@ echo $time
 <?php else : ?>
 <p class="not-found">No Blogs Found</p>
 <?php endif; ?>
-
+<?= $this->include("layouts/sidebar") ?>
 <?= $this->endSection() ?>

@@ -35,6 +35,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url("/categories") ?>">Manage Categories</a></li>
                     <li><a href="<?= url_to("logout") ?>" class="dropdown-item">Logout</a></li>
                     <?php if(auth()->user()->inGroup("superadmin")): ?>
                     <li><a class="dropdown-item <?php if(current_url() === base_url("/admin/users")):?> active <?php endif; ?>" href="/admin/users">Manage Bloggers</a></li>
@@ -69,8 +70,8 @@
         <p>Game Reviews and Reflections</p>
     </div>
     <ul class="d-flex flex-column justify-content-center account-links">
-        <div class="link-header">Account</div>
-        <?php if (auth()->loggedIn()): ?>
+    <?php if (auth()->loggedIn()): ?>
+        <div class="link-header">Manage Categories</div>
         <li class="footer-item">
         <a href="<?= url_to("logout") ?>" class="footer-link">Logout</a>
         </li>
@@ -81,7 +82,7 @@
         <?php endif; ?>
     </ul>
     <ul class="d-flex flex-column justify-content-center account-links">
-        <div class="link-header">Blogs</div>
+        <div class="link-header">All Blogs</div>
         <li class="footer-item">
           <a class="footer-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Recent Reviews</a>
         </li>
