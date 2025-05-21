@@ -49,27 +49,6 @@ class Categories extends BaseController
        
     }
 
-    public function show($category_id) // provides one article based on the id of the article within the Articles table
-    {
-        
-        $category = $this->getCategoryOr404($category_id);
-
-        return view("Settings/Categories/category", [ //inputs the data for the given category into the show view.
-            "category" => $category
-        ]);
-    }
-
-
-    public function confirmDelete($category_id)
-    {
-        $category = $this->getCategoryOr404($category_id);
-
-        return view("Settings/Categories/delete", [
-            "category" =>$category
-        ]);
-
-    }
-
     public function delete($category_id)
     {
            

@@ -26,7 +26,7 @@ $routes->group("", ["filter" => "group: admin, user"], static function ($routes)
 
     $routes->get("categories", "Categories::index");
     $routes->post("categories", "Categories::addCategory");
-    $routes->delete("categories/(:num)", "Categories::delete/$1");
+    $routes->delete("categories/(:num)", "Categories::delete/$1"); //NOTE: (:num) and $1 still required to pass the ID even if you don't route the user to "categories/[ID]" or "categories/delete/[ID]"
     
     $routes->get("set-password", "Password::set");
     $routes->post("set-password", "Password::update");
