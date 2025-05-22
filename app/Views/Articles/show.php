@@ -16,4 +16,5 @@
 <a href="<?= url_to("Articles::confirmDelete", $article->id) ?>" class="button-link"><button class="btn btn-danger">Delete</button></a>
 <?php endif; ?>
 </div>
+
 <?= $this->endSection() ?>

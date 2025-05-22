@@ -8,13 +8,13 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get("/", "Home::articles");
 
-
 service('auth')->routes($routes); //shield authorization routes
 //$routes->resource("articles", ["placeholder" => "(:num)"]); // the resource route automatically generates all of the RESTful crud routes below
 $routes->get("/articles", "Articles::index");
 $routes->get("articles/(:num)", "Articles::show/$1");
 $routes->match(["get", "post"], "/search", "Search::search");
 $routes->match(["get", "post"], "/archive", "Search::archive");
+
 
 $routes->group("", ["filter" => "group: admin, user"], static function ($routes){
     $routes->get("articles/new", "Articles::new");

@@ -22,7 +22,7 @@ class Home extends BaseController
         return view("Home/index");
     }
 
-    public function articles() {    
+    public function articles() {  
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
@@ -37,9 +37,9 @@ class Home extends BaseController
         return view ("Home/index", [ //inputs the article data into the index view to be displayed
             "articles" => $data,
             "pager" => $this->model->pager
+           
         ]);
     }
-
 
     private function sendTestEmail()
     {

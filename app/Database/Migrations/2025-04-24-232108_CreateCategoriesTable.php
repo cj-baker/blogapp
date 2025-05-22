@@ -9,10 +9,12 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'category_id' => [
+            'id' => [
                 'type'           => 'INT',
                 'unsigned'       => true,
+                'null'           => false,
                 'auto_increment' => true,
+                "constraint" => 11
         ],
             'name' => [
                 'type'       => 'VARCHAR',
@@ -28,7 +30,7 @@ class CreateCategoriesTable extends Migration
             'updated_at timestamp default current_timestamp on update current_timestamp'
     ]);
 
-        $this->forge->addPrimaryKey("category_id");
+        $this->forge->addPrimaryKey("id");
 
         $this->forge->createTable("categories");
     }

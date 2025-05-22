@@ -3,8 +3,8 @@
 <?= $this->section("title") ?>Search Results<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>  
-
-
+<div class="content d-flex">
+<section class="results float-left col-8">
 <h1>Results for 
     
 <?php 
@@ -30,5 +30,7 @@ echo $time
 <?php else : ?>
 <p class="not-found">No Blogs Found</p>
 <?php endif; ?>
+</section>
 <?= $this->include("layouts/sidebar") ?>
+</div>
 <?= $this->endSection() ?>

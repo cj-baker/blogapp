@@ -47,7 +47,7 @@
     <tbody>
     <?php foreach($categories as $category): ?>
             <tr>
-                <td><?= ($category->category_id) ?></td>
+                <td><?= ($category->id) ?></td>
                 <td><?= esc($category->name) ?></td>
                 
                 <td>
@@ -61,7 +61,7 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                   <div class="modal-body">
-                  <?= form_open("categories/" . $category->category_id) ?>
+                  <?= form_open("categories/" . $category->id) ?>
                     <input type="hidden" name="_method" value="DELETE">  <!--Value needs to be DELETE in all caps -->
 
                     <button class="btn btn-danger">Delete</button><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

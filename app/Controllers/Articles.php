@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ArticleModel;
 use App\Entities\Article;
+use App\Models\CategoryModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Articles extends BaseController 
@@ -36,7 +37,6 @@ class Articles extends BaseController
     {
         
        $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
-
         return view("Articles/show", [ //inputs the data for the given article into the show view.
             "article" => $article
         ]);
@@ -44,17 +44,23 @@ class Articles extends BaseController
 
     public function new() //
     {
+        $category = new CategoryModel;
+        $categories = $category->findAll();
         return view("Articles/new", [
-            "article" => new Article
+            "article" => new Article,
+            "categories" => $categories
         ]);
     }
 
     public function create()
     {
+        
+        //$sql = "SET FOREIGN_KEY_CHECKS=0";
+        //$this->model->query($sql);
         $article = new Article($this->request->getPost()); //will process the post request through the Article entity, which will set all properties of the object that are set within the ArticleModel (ie allowedFields)
-
+             
         $id = $this->model->insert($article); //using the insert method to insert whatever we pull from the getPost request.
-
+        
         if($id === false) {
             return redirect()->back() //redirects back to the original page
                              ->with("errors", $this->model->errors()) //displays errors based on the validation criteria in the ArticleModel
@@ -67,13 +73,20 @@ class Articles extends BaseController
 
     public function edit($id)
     {
+        $category = new CategoryModel;
+        $categories = $category->findAll();
         
-
-       $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
-
+        $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
+        $current_category = $this->model
+                              ->select("article.*, categories.name")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->find($id);
         return view("Articles/edit", [ //inputs the data for the given article into the show view.
-            "article" => $article
+            "article" => $article,
+            "categories" => $categories,
+            "current_category" => $current_category
         ]);
+        
     }
 
     public function update($id)
@@ -128,16 +141,7 @@ class Articles extends BaseController
 
         
     }
-
-    public function search($id) // provides one article based on the id of the article within the Articles table
-    {
-        
-       $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
-
-        return view("Articles/show", [ //inputs the data for the given article into the show view.
-            "article" => $article
-        ]);
-    }
+    
     private function getArticleOr404($id): Article
     {
         $article = $this->model->find($id); //grabs one article by id OR spits out error if the id does not exist

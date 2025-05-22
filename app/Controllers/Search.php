@@ -18,6 +18,7 @@ class Search extends BaseController
     {
         $this->model = new ArticleModel;
     }
+ 
     public function search() {
 
         $searchInput = $this->request->getPost(esc("search"));
@@ -49,10 +50,6 @@ class Search extends BaseController
         
         $archiveDate = $this->request->getPost("archive");
         $rangeDate = Time::parse($archiveDate)->addMonths(1)->toLocalizedString();
-        
-       
-
-        
             
                 $data = $this->model
                 
@@ -72,13 +69,10 @@ class Search extends BaseController
                 "articles" => $data,
                 "pager" => $this->model->pager,
                 "archive" => $archiveDate
-            ]);
-            
-         
-        
-        
+            ]);  
         
     }
+
     
     
 
