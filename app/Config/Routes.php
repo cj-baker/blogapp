@@ -14,6 +14,7 @@ $routes->get("/articles", "Articles::index");
 $routes->get("articles/(:num)", "Articles::show/$1");
 $routes->match(["get", "post"], "/search", "Search::search");
 $routes->match(["get", "post"], "/archive", "Search::archive");
+$routes->match(["get", "post"], "/category", "Search::category");
 
 
 $routes->group("", ["filter" => "group: admin, user"], static function ($routes){

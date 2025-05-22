@@ -54,9 +54,6 @@ class Articles extends BaseController
 
     public function create()
     {
-        
-        //$sql = "SET FOREIGN_KEY_CHECKS=0";
-        //$this->model->query($sql);
         $article = new Article($this->request->getPost()); //will process the post request through the Article entity, which will set all properties of the object that are set within the ArticleModel (ie allowedFields)
              
         $id = $this->model->insert($article); //using the insert method to insert whatever we pull from the getPost request.

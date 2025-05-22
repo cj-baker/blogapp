@@ -23,6 +23,10 @@ class Home extends BaseController
     }
 
     public function articles() {  
+        $categories = $this->model
+                              ->select("article.*, categories.name, categories.id")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->findAll();
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
@@ -36,7 +40,8 @@ class Home extends BaseController
         
         return view ("Home/index", [ //inputs the article data into the index view to be displayed
             "articles" => $data,
-            "pager" => $this->model->pager
+            "pager" => $this->model->pager,
+            "categories" => $categories
            
         ]);
     }
