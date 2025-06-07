@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
+use App\Models\CategoryModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Entities\Article;
@@ -22,6 +23,10 @@ class Search extends BaseController
     public function search() {
 
         $searchInput = $this->request->getPost(esc("search"));
+        $categories = $this->model
+                              ->select("article.*, categories.name, categories.id")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->findAll();
 
         $data = $this->model
                      ->select("article.*, users.username")
@@ -38,10 +43,11 @@ class Search extends BaseController
                      //grabs all articles and puts them into pages with the number passed being the amount of records per page
         
 
-                     return view ("Articles/search", [ //inputs the article data into the index view to be displayed
+                     return view ("Search/search", [ //inputs the article data into the index view to be displayed
                         "articles" => $data,
                         "pager" => $this->model->pager,
-                        "search" => $searchInput
+                        "search" => $searchInput,
+                        "categories" => $categories
                     ]);
 
     }
@@ -50,8 +56,12 @@ class Search extends BaseController
         
         $archiveDate = $this->request->getPost("archive");
         $rangeDate = Time::parse($archiveDate)->addMonths(1)->toLocalizedString();
-            
-                $data = $this->model
+        
+        $categories = $this->model
+                              ->select("article.*, categories.name, categories.id")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->findAll();
+        $data = $this->model
                 
                 ->select("article.*, users.username")
                 //selecting all columns from the article table, but only the username from the users table
@@ -65,10 +75,11 @@ class Search extends BaseController
                 //grabs all articles and puts them into pages with the number passed being the amount of records per page
 
 
-                return view ("Articles/archive", [ //inputs the article data into the index view to be displayed
+                return view ("Search/archive", [ //inputs the article data into the index view to be displayed
                 "articles" => $data,
                 "pager" => $this->model->pager,
-                "archive" => $archiveDate
+                "archive" => $archiveDate,
+                "categories" => $categories
             ]);  
         
     }
@@ -90,7 +101,7 @@ class Search extends BaseController
                      //grabs all articles and puts them into pages with the number passed being the amount of records per page
         
 
-                     return view ("Articles/category", [ //inputs the article data into the index view to be displayed
+                     return view ("Search/category", [ //inputs the article data into the index view to be displayed
                         "articles" => $data,
                         "pager" => $this->model->pager,
                         "searchCategory" => $searchCategory

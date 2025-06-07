@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #ff9eca;" data-bs-theme="light"">
         <div class="container-fluid d-flex flex-column gap-5">
             <div class="nav-header text-center mx-auto mb-5">
-                <a class="navbar-brand" href="#">The DryerAverage</a>
+                <a class="navbar-brand" href="/">The DryerAverage</a>
                 <p>Game Reviews and Reflections</p>
                 <img src="<?= base_url('assets/images/peach.png'); ?>" alt="princess peach" class="nav-image img-fluid">
             </div>

@@ -25,6 +25,9 @@ class Categories extends BaseController
         return view("Settings\Categories\categories", [
             "categories" => $data
         ] ); 
+        return view("Search\archive", [
+            "categories" => $data
+        ] ); 
 
     }
     

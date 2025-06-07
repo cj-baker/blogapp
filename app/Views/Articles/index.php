@@ -23,5 +23,5 @@
     <?php endforeach; ?>
 
     <?= $pager->simpleLinks() ?>
-
+<?= $this->include("layouts/sidebar") ?>
 <?= $this->endSection() ?>

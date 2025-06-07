@@ -17,6 +17,11 @@ class Articles extends BaseController
     }
     public function index() //provides the list of articles based on the ArticleModel which handles the Articles table data.
     {
+        $categories = $this->model
+                              ->select("article.*, categories.name, categories.id")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->findAll();
+        
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
@@ -29,7 +34,8 @@ class Articles extends BaseController
         
         return view ("Articles/index", [ //inputs the article data into the index view to be displayed
             "articles" => $data,
-            "pager" => $this->model->pager
+            "pager" => $this->model->pager,
+            "categories" => $categories
         ]);
     }
 
