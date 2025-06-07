@@ -23,10 +23,8 @@ class Search extends BaseController
     public function search() {
 
         $searchInput = $this->request->getPost(esc("search"));
-        $categories = $this->model
-                              ->select("article.*, categories.name, categories.id")
-                              ->join("categories", "categories.id = article.category_id")
-                              ->findAll();
+        $categories = new CategoryModel;
+        $categories = $categories->findAll();
 
         $data = $this->model
                      ->select("article.*, users.username")
@@ -83,33 +81,35 @@ class Search extends BaseController
             ]);  
         
     }
-    public function category() {
+    public function category(Search $category){
+      
+    }
+    
 
-        $searchCategory = $this->request->getPost("category");
+       // $searchCategory = $this->request->getPost("category");
         
 
-        $data = $this->model
-                     ->select("article.*, users.username")
+        //$data = $this->model
+                    // ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
-                     ->where("article.category_id = $searchCategory")
+                    // ->where("article.category_id = $searchCategory")
                      
-                     ->join("users", "users.id = article.users_id")
+                   //  ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
-                     ->orderBy("created_at DESC")
+                   //  ->orderBy("created_at DESC")
                      //order the below paginate list by created date
-                     ->paginate(3); 
+                   //  ->paginate(3); 
                      //grabs all articles and puts them into pages with the number passed being the amount of records per page
         
 
-                     return view ("Search/category", [ //inputs the article data into the index view to be displayed
-                        "articles" => $data,
-                        "pager" => $this->model->pager,
-                        "searchCategory" => $searchCategory
-                    ]);
+                    // return view ("Search/category", [ //inputs the article data into the index view to be displayed
+                       // "articles" => $data,
+                       // "pager" => $this->model->pager,
+                       // "searchCategory" => $searchCategory
+                   // ]);
 
     }
 
     
     
 
-}

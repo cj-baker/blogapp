@@ -3,7 +3,7 @@
 <?= $this->section("title") ?>Search Results<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>  
-
+<h1>Search Results for "<?= esc($category) ?>"</h1>
 <?php if (!empty($articles)) : ?>
 <?php foreach ($articles as $article): ?>
         <article>

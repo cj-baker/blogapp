@@ -17,16 +17,16 @@ class Articles extends BaseController
     }
     public function index() //provides the list of articles based on the ArticleModel which handles the Articles table data.
     {
-        $categories = $this->model
-                              ->select("article.*, categories.name, categories.id")
-                              ->join("categories", "categories.id = article.category_id")
-                              ->findAll();
+        $categoryModel = new CategoryModel;
+        $categories = $categoryModel->findAll();
+        
         
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
+                     
                      ->orderBy("created_at DESC")
                      //order the below paginate list by created date
                      ->paginate(3); 

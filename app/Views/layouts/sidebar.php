@@ -44,7 +44,9 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
 
     <?php foreach ($categories as $category):?>
                 
-               
+            <li class="list-group-item">
+                <a href="<?= site_url("/category/". $category->id)?>"><?=$category->name?></a>
+            </li>   
            
             <?php endforeach;?>
 </div>

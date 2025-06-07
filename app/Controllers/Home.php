@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
+use App\Models\CategoryModel;
 use CodeIgniter\I18n\Time;
 
 class Home extends BaseController
@@ -23,10 +24,9 @@ class Home extends BaseController
     }
 
     public function articles() {  
-        $categories = $this->model
-                              ->select("article.*, categories.name, categories.id")
-                              ->join("categories", "categories.id = article.category_id")
-                              ->findAll();
+        $categories = new CategoryModel;
+        $categories = $categories->findAll();
+        
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
