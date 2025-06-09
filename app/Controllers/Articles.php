@@ -41,10 +41,16 @@ class Articles extends BaseController
 
     public function show($id) // provides one article based on the id of the article within the Articles table
     {
-        
+    
        $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
-        return view("Articles/show", [ //inputs the data for the given article into the show view.
-            "article" => $article
+       $current_category = $this->model
+                              ->select("article.*, categories.name")
+                              ->join("categories", "categories.id = article.category_id")
+                              ->find($id);
+       $category_name = $current_category->name; 
+       return view("Articles/show", [ //inputs the data for the given article into the show view.
+            "article" => $article,
+            "category" => $category_name
         ]);
     }
 
@@ -84,6 +90,7 @@ class Articles extends BaseController
                               ->select("article.*, categories.name")
                               ->join("categories", "categories.id = article.category_id")
                               ->find($id);
+       
         return view("Articles/edit", [ //inputs the data for the given article into the show view.
             "article" => $article,
             "categories" => $categories,
@@ -106,7 +113,7 @@ class Articles extends BaseController
             return redirect()->back()
                              ->with("message", "No changes have been made.");
         }
-
+        //dd($article->category_id);
         if ($this->model->save($article)){ //save method will update the article that we have already selected which does nto require us to pass in the id object, just the article object
 
             return redirect()->to("articles/$id") //provides a redirect to a different page

@@ -1,8 +1,9 @@
 <?php use CodeIgniter\I18n\Time; 
 $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
 ?>
-<div class="sidebar flex-column float-right col-4">
-    <div class="search-form d-flex flex-row justify-content-end">
+<div class="sidebar flex-column col-4 py-5 align-items-center">
+    <h3>SEARCH</h3>
+    <div class="search-form d-flex flex-row justify-content-center">
         <?= form_open("search")?>
             <div class="form-content d-flex flex-row">
                 <input type="text" name="search" placeholder="Search blogs" class="form-control">
@@ -10,9 +11,9 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
             </div>
         </form>
     </div>
-    <h3>Archives</h3>
-    <div class="archive-form d-flex flex-column align-items-end">
-        
+    <hr>
+    <h3>ARCHIVE</h3>
+    <div class="archive-form d-flex flex-row justify-content-center">
         <?= form_open("archive") ?>
             <label for="archive">Search by Month</label>
             <div class="form-content d-flex">
@@ -29,24 +30,15 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
             </div>
         </form>
     </div> 
-    <div class="category-form d-flex flex-column align-items-end">
-        <?= form_open("category") ?>
-        <select name="category" class="form-select">
+    <hr>
+    <div>
+        <h3>CATEGORIES</h3>
+        <ul class="category-list">
             <?php foreach ($categories as $category):?>
-                
-                <option value="<?= $category->id?>"><?= $category->name?></option> 
-           
+                <li class="list-group-item">
+                    <a href="<?= site_url("/category/". $category->id)?>"><?=$category->name?></a>
+                </li>   
             <?php endforeach;?>
-             </select>
-            <button class="btn btn-primary "><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-    </div>
-
-    <?php foreach ($categories as $category):?>
-                
-            <li class="list-group-item">
-                <a href="<?= site_url("/category/". $category->id)?>"><?=$category->name?></a>
-            </li>   
-           
-            <?php endforeach;?>
+        </ul>   
+    </div> 
 </div>

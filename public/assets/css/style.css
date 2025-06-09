@@ -59,12 +59,12 @@ form.article-form{
 }
 .search-form, .archive-form {
     padding: 40px 10px;
-    text-align: end;
-    width: 75%;
+    text-align: center;
+    
     
 }
 .blog-content{
-    margin: 0 auto;
+    
     text-align: center;
     display: block;
     

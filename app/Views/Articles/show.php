@@ -8,6 +8,10 @@
 
 <p><?= $article->content ?></p>
 
+<p><?= $article->tags ?></p>
+
+<p><?= $category ?></p>
+
 <?php if(auth()->loggedIn() && ($article->isOwner() || auth()->user()->can("articles.edit"))): //isOwner method was created in Articles Entities page ?>
 <a href="<?= url_to("Articles::edit", $article->id) ?>" class="button-link"><button class="btn btn-primary">Edit</button></a>
 <?php endif; ?>
