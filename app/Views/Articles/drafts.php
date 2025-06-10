@@ -1,9 +1,9 @@
 <?= $this->extend("layouts/default") ?>
-<?= $this->section("title") ?>All Articles<?= $this->endSection() ?>
+<?= $this->section("title") ?>Drafts<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
 <div class="blog-list col-8">
-    <h1>All Articles</h1>
+    <h1>Drafts</h1>
 
     <?php if (auth()->loggedIn()): ?>
         <a href="<?= url_to("Articles::new") ?>">New Article</a>

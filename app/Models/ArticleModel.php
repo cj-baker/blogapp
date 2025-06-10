@@ -8,7 +8,7 @@ class ArticleModel extends Model
 {
  protected $table = "article";
 
- protected $allowedFields =["title", "content", "category_id", "tags"];
+ protected $allowedFields =["title", "content", "category_id", "tags", "visibility"];
 
  protected $returnType = \App\Entities\Article::class; //allows the model to use the entity class created for articles
 

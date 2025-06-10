@@ -27,7 +27,10 @@
                 <a class="nav-link <?php if(current_url() === base_url("")):?> active <?php endif; ?>" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Blogs</a>
+                <a class="nav-link <?php if(current_url() === base_url("/about")):?> active <?php endif; ?>" aria-current="page" href="<?= base_url("/about")?>">About</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Articles</a>
                 </li>
                 <?php if (auth()->loggedIn()): ?>
                 <li class="nav-item dropdown">
@@ -36,11 +39,12 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a href="<?= base_url("/drafts") ?>" class="dropdown-item">Drafts</a></li>
                     <li><a class="dropdown-item" href="<?= base_url("/categories") ?>">Manage Categories</a></li>
-                    <li><a href="<?= url_to("logout") ?>" class="dropdown-item">Logout</a></li>
                     <?php if(auth()->user()->inGroup("superadmin")): ?>
-                    <li><a class="dropdown-item <?php if(current_url() === base_url("/admin/users")):?> active <?php endif; ?>" href="/admin/users">Manage Bloggers</a></li>
+                    <li><a class="dropdown-item <?php if(current_url() === base_url("/admin/users")):?> active <?php endif; ?>" href="/admin/users">Manage Users</a></li>
                     <?php endif; ?>
+                    <li><a href="<?= url_to("logout") ?>" class="dropdown-item">Logout</a></li>
                 </ul>
                 </li>
                 <?php endif; ?>
@@ -72,7 +76,13 @@
     </div>
     <ul class="d-flex flex-column justify-content-center account-links">
     <?php if (auth()->loggedIn()): ?>
-        <div class="link-header">Manage Categories</div>
+        <div class="link-header"><?= esc(auth()->user()->username) ?></div>
+        <li class="footer-item">
+        <a href="<?= base_url("/drafts") ?>" class="footer-link">Drafts</a>
+        </li>
+        <li class="footer-item">
+        <a href="<?= base_url("/categories") ?>" class="footer-link">Manage Categories</a>
+        </li>
         <li class="footer-item">
         <a href="<?= url_to("logout") ?>" class="footer-link">Logout</a>
         </li>
@@ -83,9 +93,12 @@
         <?php endif; ?>
     </ul>
     <ul class="d-flex flex-column justify-content-center account-links">
-        <div class="link-header">All Blogs</div>
+        <div class="link-header">Articles</div>
         <li class="footer-item">
-          <a class="footer-link <?php if(current_url() === base_url("/articles")):?> active <?php endif; ?>" href="/articles">Recent Reviews</a>
+          <a class="footer-link <?php if(current_url() === base_url("/articles")):?>  <?php endif; ?>" href="/articles">All Articles</a>
+        </li>
+        <li class="footer-item">
+          <a class="footer-link <?php if(current_url() === base_url("/")):?>  <?php endif; ?>" href="/articles">Recent Articles</a>
         </li>
     </ul>
 </div>    

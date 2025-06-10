@@ -9,9 +9,9 @@
     <p><?= $article->content ?></p>
 
     <p>
-        <em>Tags: <?= $article->tags ?></em>
+        <em>Tags: <?= esc($article->tags) ?></em>
         <br>
-        <em>Category: <?= $category_name ?></em>
+        <em>Category: <?= esc($category_name) ?></em>
     </p>
 
     <?php if (auth()->loggedIn() && ($article->isOwner() || auth()->user()->can("articles.edit"))): //isOwner method was created in Articles Entities page 

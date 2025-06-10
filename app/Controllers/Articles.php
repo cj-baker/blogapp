@@ -22,6 +22,7 @@ class Articles extends BaseController
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
+                     ->where("article.visibility = 1")
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
                      
@@ -38,8 +39,33 @@ class Articles extends BaseController
         ]);
     }
 
+     public function drafts() //provides the list of articles based on the ArticleModel which handles the Articles table data.
+    {
+        $data = $this->model
+                     ->select("article.*, users.username")
+                     //selecting all columns from the article table, but only the username from the users table
+                     ->where("article.visibility = 0") //selects only articles with the visibility of 0
+                     ->join("users", "users.id = article.users_id")
+                     //then join to the users table, the id from the users table and the users_id from the article table
+                     
+                     ->orderBy("created_at DESC")
+                     //order the below paginate list by created date
+                     ->paginate(3); 
+                     //grabs all articles and puts them into pages with the number passed being the amount of records per page
+        
+       
+        
+        return view ("Articles/drafts", [ //inputs the article data into the index view to be displayed
+            "articles" => $data,
+            "pager" => $this->model->pager
+        ]);
+    }
+
     public function show($id) // provides one article based on the id of the article within the Articles table
     {
+       $categoryModel = new CategoryModel;
+       $categories = $categoryModel->findAll();
+
        $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
        $current_category = $this->model
                               ->select("article.*, categories.name")
@@ -48,14 +74,18 @@ class Articles extends BaseController
        $category_name = $current_category->name; 
        return view("Articles/show", [ //inputs the data for the given article into the show view.
             "article" => $article,
-            "category_name" => $category_name
+            "category_name" => $category_name,
+            "categories" =>$categories
         ]);
     }
 
     public function new() //
     {
+        $category = new CategoryModel;
+        $categories = $category->findAll();
         return view("Articles/new", [
-            "article" => new Article
+            "article" => new Article,
+            "categories" => $categories
         ]);
     }
 
@@ -77,6 +107,9 @@ class Articles extends BaseController
 
     public function edit($id)
     {
+        $category = new CategoryModel;
+        $categories = $category->findAll();
+        
         $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
         $current_category = $this->model
                               ->select("article.*, categories.name")
@@ -85,6 +118,7 @@ class Articles extends BaseController
        
         return view("Articles/edit", [ //inputs the data for the given article into the show view.
             "article" => $article,
+            "categories" => $categories,
             "current_category" => $current_category
         ]);
         

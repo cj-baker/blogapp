@@ -8,12 +8,17 @@
 <input type="text" class="form-control" id="tags" name="tags" value="<?= old("tags", esc($article->tags))?>"/>
 <label for="category">Category</label>
 <select name="category_id" id="category_id" class="form-control form-select">
-    <option selected  value="<?= $current_category->category_id ?>"><?php if($article->category_id): ?> <?= esc($current_category->name)?><?php else: ?>Choose a Category <?php endif; ?></option>
+    <option selected  value="<?php if($article->category_id): ?><?= esc($current_category->category_id)?><?php else: ?><?php endif; ?>"><?php if($article->category_id): ?> <?= esc($current_category->name)?><?php else: ?>Choose a Category <?php endif; ?></option>
     <?php foreach ($categories as $category): ?>
     <?php if($category->id != $article->category_id): ?>
     <option value="<?= $category->id ?>"><?= esc($category->name)?></option>
     <?php endif;?>
     <?php endforeach;?> 
+</select>
+<label for="visibility">Visibility</label>
+<select name="visibility" id="visibility" class="form-control form-select">
+    <option selected  value="0">Private (Draft)</option>
+    <option value="1">Publish</option> 
 </select>
 <button class="btn btn-primary mt-5 mx-auto px-5">Save</button>
 </div>

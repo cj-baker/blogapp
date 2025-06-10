@@ -22,11 +22,16 @@ class Home extends BaseController
         }
         return view("Home/index");
     }
+    public function about()
+    {
+        return view("Home/about");
+    }
 
     public function articles() {  
         $data = $this->model
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
+                     ->where("article.visibility = 1")
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
                      

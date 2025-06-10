@@ -6,7 +6,7 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
     <div class="search-form d-flex flex-row justify-content-center">
         <?= form_open("search")?>
             <div class="form-content d-flex flex-row">
-                <input type="text" name="search" placeholder="Search blogs" class="form-control">
+                <input type="text" name="search" placeholder="Search articles" class="form-control">
                 <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </form>
@@ -47,7 +47,7 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
             
            <?php foreach(get_tags() as $tag): ?>
            <li class="list-group-item mx-1">
-           <a href="<?= site_url("/tag/". $tag)?>"><?= $tag ?></a> 
+           <a href="<?= site_url("/tag/". esc($tag))?>"><?= esc($tag) ?></a> 
            </li>
            <?php endforeach;?>
         </ul>   
