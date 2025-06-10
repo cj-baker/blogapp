@@ -17,8 +17,6 @@ class Articles extends BaseController
     }
     public function index() //provides the list of articles based on the ArticleModel which handles the Articles table data.
     {
-        $categoryModel = new CategoryModel;
-        $categories = $categoryModel->findAll();
         
         
         $data = $this->model
@@ -32,16 +30,16 @@ class Articles extends BaseController
                      ->paginate(3); 
                      //grabs all articles and puts them into pages with the number passed being the amount of records per page
         
+       
+        
         return view ("Articles/index", [ //inputs the article data into the index view to be displayed
             "articles" => $data,
-            "pager" => $this->model->pager,
-            "categories" => $categories
+            "pager" => $this->model->pager
         ]);
     }
 
     public function show($id) // provides one article based on the id of the article within the Articles table
     {
-    
        $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
        $current_category = $this->model
                               ->select("article.*, categories.name")
@@ -50,17 +48,14 @@ class Articles extends BaseController
        $category_name = $current_category->name; 
        return view("Articles/show", [ //inputs the data for the given article into the show view.
             "article" => $article,
-            "category" => $category_name
+            "category_name" => $category_name
         ]);
     }
 
     public function new() //
     {
-        $category = new CategoryModel;
-        $categories = $category->findAll();
         return view("Articles/new", [
-            "article" => new Article,
-            "categories" => $categories
+            "article" => new Article
         ]);
     }
 
@@ -82,9 +77,6 @@ class Articles extends BaseController
 
     public function edit($id)
     {
-        $category = new CategoryModel;
-        $categories = $category->findAll();
-        
         $article = $this->getArticleOr404($id); //grabs one article by id OR spits out error if the id does not exist
         $current_category = $this->model
                               ->select("article.*, categories.name")
@@ -93,7 +85,6 @@ class Articles extends BaseController
        
         return view("Articles/edit", [ //inputs the data for the given article into the show view.
             "article" => $article,
-            "categories" => $categories,
             "current_category" => $current_category
         ]);
         
@@ -149,6 +140,12 @@ class Articles extends BaseController
             return redirect()->to("articles")
                              ->with("message", "Your blog entry was deleted.");
 
+        
+    }
+
+    public function tags(){
+        
+        
         
     }
     

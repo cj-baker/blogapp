@@ -1,7 +1,7 @@
 <?php use CodeIgniter\I18n\Time; 
 $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
 ?>
-<div class="sidebar flex-column col-4 py-5 align-items-center">
+<div class="sidebar flex-column float-right col-4 py-5 align-items-center">
     <h3>SEARCH</h3>
     <div class="search-form d-flex flex-row justify-content-center">
         <?= form_open("search")?>
@@ -31,14 +31,25 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
         </form>
     </div> 
     <hr>
-    <div>
-        <h3>CATEGORIES</h3>
-        <ul class="category-list">
-            <?php foreach ($categories as $category):?>
-                <li class="list-group-item">
+    <h3>CATEGORIES</h3>
+    <div class="categories">
+        <ul class="category-list d-flex flex-row justify-content-center">
+            <?php foreach (get_categories() as $category):?>
+                <li class="list-group-item mx-1">
                     <a href="<?= site_url("/category/". $category->id)?>"><?=$category->name?></a>
                 </li>   
             <?php endforeach;?>
+        </ul>   
+    </div> 
+    <h3>TAGS</h3>
+    <div class="tags">
+        <ul class="tags-list d-flex flex-row justify-content-center">
+            
+           <?php foreach(get_tags() as $tag): ?>
+           <li class="list-group-item mx-1">
+           <a href="<?= site_url("/tag/". $tag)?>"><?= $tag ?></a> 
+           </li>
+           <?php endforeach;?>
         </ul>   
     </div> 
 </div>

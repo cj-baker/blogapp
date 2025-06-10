@@ -50,7 +50,7 @@
         </div>
     </nav>
 
-<section class="content">
+<section class="content flex-row row">
 
 <?php if (session()->has("message")): ?>
     <p><?= session("message") ?></p>

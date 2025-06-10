@@ -61,30 +61,7 @@ class Categories extends BaseController
 
         
     }
-    public function show($id) // provides one article based on the id of the article within the Articles table
-    {
-       $category = $this->getCategoryOr404($id);
-       $categoryId = $id;
-       $categoryName = $category->name;
-       $articles = new ArticleModel;
-       $data = $articles
-                     ->select("article.*, users.username")
-                     //selecting all columns from the article table, but only the username from the users table
-                     ->where("article.category_id = $categoryId")
-                     
-                     ->join("users", "users.id = article.users_id")
-                     //then join to the users table, the id from the users table and the users_id from the article table
-                     ->orderBy("created_at DESC")
-                     //order the below paginate list by created date
-                     ->paginate(3); 
-                     //grabs all articles and puts them into pages with the number passed being the amount of records per page
-       
-       return view("Search/category", [ //inputs the data for the given article into the show view.
-            "articles" => $data,
-            "pager" => $this->model->pager,
-            "category" => $categoryName
-        ]);
-    }
+    
     private function getCategoryOr404($id): Category
     {
         $category = $this->model->find($id); //grabs one article by id OR spits out error if the id does not exist
