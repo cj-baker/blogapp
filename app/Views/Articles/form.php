@@ -17,8 +17,8 @@
 </select>
 <label for="visibility">Visibility</label>
 <select name="visibility" id="visibility" class="form-control form-select">
-    <option selected  value="0">Private (Draft)</option>
-    <option value="1">Publish</option> 
+    <option <?php if($article->visibility === 0): ?>selected<?php else:?> <?php endif; ?> value="0">Private (Draft)</option>
+    <option <?php if($article->visibility === 1): ?>selected<?php else:?> <?php endif; ?> value="1">Public</option> 
 </select>
 <button class="btn btn-primary mt-5 mx-auto px-5">Save</button>
 </div>
