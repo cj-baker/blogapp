@@ -3,13 +3,13 @@
 <?= $this->section("title") ?> Article - <?= $article->title ?><?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
-<div class="blog-content col-8">
+<div class="blog-content col-8 pb-5">
     <h1><?= $article->title ?></h1>
 
     <p><?= $article->content ?></p>
 
     <p>
-        <em>Tags: <?= esc($article->tags) ?></em>
+        <em>Tags: <?php if($article->tags):?> <?= esc($article->tags) ?> <?php else:?>None<?php endif;?></em>
         <br>
         <em>Category: <?= esc($category_name) ?></em>
     </p>

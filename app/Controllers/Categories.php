@@ -61,6 +61,37 @@ class Categories extends BaseController
 
         
     }
+
+    public function edit($id)
+    {
+        $category = $this->getCategoryOr404($id);
+
+        return view("Settings\Categories\categories", [
+            "category" => $category
+        ] ); 
+    }
+
+    public function update($id)
+    {
+        $category = $this->getCategoryOr404($id);
+        $category->fill($this->request->getPost()); // use the Entity fill method during the getPost request to update the properties
+
+        $category->__unset("_method");
+        
+        if ( ! $category->hasChanged()) {
+
+            return redirect()->back()
+                             ->with("message", "No changes have been made.");
+        }
+        //dd($category->category_id);
+        if ($this->model->save($category)){
+
+            return redirect()->to("categories")
+                             ->with("message", "Category updated.");
+        }
+
+        
+    }
     
     private function getCategoryOr404($id): Category
     {

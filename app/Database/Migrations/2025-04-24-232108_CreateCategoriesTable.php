@@ -12,7 +12,6 @@ class CreateCategoriesTable extends Migration
             'id' => [
                 'type'           => 'INT',
                 'unsigned'       => true,
-                'null'           => false,
                 'auto_increment' => true,
                 "constraint" => 11
         ],

@@ -3,11 +3,12 @@
 
 <?= $this->section("content") ?>
 <div class="blog-list col-8">
-    <h1>All Articles</h1>
-
+    <div class="d-flex align-items-center justify-content-between">
+        <h1>All Articles</h1>
     <?php if (auth()->loggedIn()): ?>
-        <a href="<?= url_to("Articles::new") ?>">New Article</a>
+        <a class="new-button pe-5" href="<?= url_to("Articles::new") ?>"><button class="btn btn-primary">+ New Article</button></a>  
     <?php endif; ?>
+    </div>
     <?php foreach ($articles as $article): ?>
         <article>
             <h2><a href="<?= site_url("/articles/" . $article->id) ?>"><?= esc($article->title) ?></a></h2>

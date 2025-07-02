@@ -1,10 +1,10 @@
 <?= $this->extend("layouts/default") ?>
 
-<?= $this->section("title") ?>New Blog Entry<?= $this->endSection() ?>
+<?= $this->section("title") ?>New Entry<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>  
 
-<h1 class="mx-auto text-center mb-5 py-5">New Blog Entry</h1>
+<h1 class="mx-auto text-center mb-5 py-5">New Entry</h1>
 
 <?php if (session()->has("errors")): ?>
     <ul>

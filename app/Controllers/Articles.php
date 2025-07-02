@@ -71,7 +71,12 @@ class Articles extends BaseController
                               ->select("article.*, categories.name")
                               ->join("categories", "categories.id = article.category_id")
                               ->find($id);
-       $category_name = $current_category->name; 
+       if($current_category){
+        $category_name = $current_category->name;
+       } else {
+        $category_name = "None";
+       }
+        
        
        return view("Articles/show", [ //inputs the data for the given article into the show view.
             "article" => $article,

@@ -21,7 +21,7 @@ class AddCategoryIdToArticleTable extends Migration
                             //addForeignKey function passes in the ("name of the column from the first table", "name of the table we are linking to", "name of the column from the table we are linking to", 
                             //"Call CASCADE for updates", "Call CASCADE for deletes", "name of the foreign key" )
             $this->forge->addForeignKey("category_id", "categories", "id",
-                                            "CASCADE", "CASCADE", "article_categories_id_fk");
+                                            "SET NULL", "CASCADE", "article_categories_id_fk");
                             //CASCADE means that when a parent recorded changed (updated or deleted) the corresponding child object is too.
             $this->forge->processIndexes("article");
 

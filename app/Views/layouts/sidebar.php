@@ -1,7 +1,7 @@
 <?php use CodeIgniter\I18n\Time; 
 $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
 ?>
-<div class="sidebar flex-column float-right col-4 py-5 align-items-center">
+<div class="sidebar flex-column float-right col-3 py-5 align-items-center">
     <h3>SEARCH</h3>
     <div class="search-form d-flex flex-row justify-content-center">
         <?= form_open("search")?>
@@ -15,7 +15,7 @@ $time   = Time::now()->setDay(1)->setHour(0)->setMinute(0)->setSecond(0);
     <h3>ARCHIVE</h3>
     <div class="archive-form d-flex flex-row justify-content-center">
         <?= form_open("archive") ?>
-            <label for="archive">Search by Month</label>
+            <div for="archive">Search by Month</div>
             <div class="form-content d-flex">
             <select name="archive" class="form-select">
                 <option selected value="<?= $time->subMonths(0); ?>"><?= $time->subMonths(0)->toLocalizedString('MMMM yyyy')?></option>

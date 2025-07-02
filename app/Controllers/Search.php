@@ -80,10 +80,12 @@ class Search extends BaseController
     public function category($id) // provides one article based on the id of the article within the Articles table
     {
        $categoryId = $id;
-       $category = new CategoryModel;
-       $category = $category->select("categories.name")
-                            ->where("categories.id = $categoryId")
-                            ->find(1);
+       $categories = new CategoryModel;
+       $category = $categories->select("categories.name")
+                              ->where("categories.id = $categoryId")
+                              ->first();
+                              
+                            
        $categoryName = $category->name;
        
        $articles = new ArticleModel;
