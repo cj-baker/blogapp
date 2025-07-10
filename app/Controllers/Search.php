@@ -62,6 +62,7 @@ class Search extends BaseController
                 //selecting all columns from the article table, but only the username from the users table
                 ->where("article.created_at >=", $archiveDate)
                 ->where("article.created_at <", $rangeDate)
+                ->where("article.visibility = 1")
                 ->join("users", "users.id = article.users_id")
                 //then join to the users table, the id from the users table and the users_id from the article table
                 ->orderBy("created_at DESC")
@@ -93,7 +94,7 @@ class Search extends BaseController
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
                      ->where("article.category_id = $categoryId")
-                     
+                     ->where("article.visibility = 1")
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
                      ->orderBy("created_at DESC")
@@ -113,7 +114,7 @@ class Search extends BaseController
                      ->select("article.*, users.username")
                      //selecting all columns from the article table, but only the username from the users table
                      ->like("article.tags", $tag, "both")
-                     
+                     ->where("article.visibility = 1")
                      ->join("users", "users.id = article.users_id")
                      //then join to the users table, the id from the users table and the users_id from the article table
                      ->orderBy("created_at DESC")
